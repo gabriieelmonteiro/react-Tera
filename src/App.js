@@ -1,4 +1,7 @@
-import { Routes, Route, BrowserRouter, Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { useState } from "react";
+
+import { currentUserContext } from "./contexts/CurrenteUserContext";
 
 import Home from './components/pages/Home';
 import UserBlog from './components/pages/UserBlog';
@@ -10,7 +13,10 @@ import "./styles/fontawesome.min.css";
 import "./styles/main.css";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState("");
+
   return (
+    <currentUserContext.Provider value= { {currentUser, setCurrentUser}}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}/>
@@ -21,6 +27,7 @@ function App() {
       </Routes>
 
     </BrowserRouter>
+    </currentUserContext.Provider>
   )
 
 }
