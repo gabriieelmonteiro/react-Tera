@@ -1,38 +1,26 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import users1 from "../../images/placeholders/user-1.jpg";
-import users2 from "../../images/placeholders/user-2.jpg";
-import users3 from "../../images/placeholders/user-3.jpg";
 import Default from "../templates/Default";
+import UserListWraper from "../molecules/UserListWraper";
 
 export default function Users() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://63cf09718a780ae6e6710dbe.mockapi.io/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
+
   return (
     <Default>
       <div className="users">
         <h1>Users</h1>
-
-        <div className="users__list">
-          <a href="#" className="users__list-item">
-            <div className="users__list-item-photo">
-              <img src={users1} className="responsive avatar" alt="" />
-            </div>
-            <div className="users__list-item-name">John Walter</div>
-          </a>
-          <a href="#" className="users__list-item">
-            <div className="users__list-item-photo">
-              <img src={users2} className="responsive avatar" alt="" />
-            </div>
-            <div className="users__list-item-name">Chris Hudson</div>
-          </a>
-          <a href="#" className="users__list-item">
-            <div className="users__list-item-photo">
-              <img src={users3} className="responsive avatar" alt="" />
-            </div>
-            <div className="users__list-item-name">Bryan Cornell</div>
-          </a>
-        </div>
+        <UserListWraper users={users} />
       </div>
     </Default>
   );

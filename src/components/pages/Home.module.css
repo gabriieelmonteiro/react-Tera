@@ -1,8 +1,8 @@
-.home > * {
+.home{
   margin-bottom: 20px;
 }
 
-.home__logo,
+.logo,
 .users {
   max-width: 250px;
 }

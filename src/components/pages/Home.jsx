@@ -33,6 +33,7 @@ export default function Home() {
       <select
         onChange={(event) => setCurrentUser(event.target.value)}
         className={styles.selectUsers}
+        defaultValue={currentUser}
       >
         <option value="">Selecione um usuário</option>
         {users
